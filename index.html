@@ -29,7 +29,7 @@
       scrollbar-width: none;
     }
   </style>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body class="bg-gray-100 text-gray-800 pb-20 md:pb-0 flex flex-col min-h-screen">
 
@@ -68,7 +68,7 @@
     </button>
   </div>
 
-  <!-- INTERACTIVE SEARCH MODAL WITH EDUCATION & FIELD FILTERS -->
+  <!-- INTERACTIVE SEARCH MODAL -->
   <div id="search-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-start justify-center pt-10 px-4 backdrop-blur-sm">
     <div class="bg-white w-full max-w-xl rounded-3xl p-5 shadow-2xl border border-gray-200 space-y-4">
       <div class="flex justify-between items-center border-b pb-3">
@@ -77,15 +77,12 @@
       </div>
 
       <div class="space-y-3">
-        <!-- Search Input -->
         <div class="relative">
           <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">🔍</span>
-          <input type="text" id="modal-search-input" placeholder="Search by job title or keywords (e.g. Assistant, Engineer)..." class="w-full text-xs sm:text-sm pl-10 pr-3 py-3 bg-gray-50 rounded-2xl border border-gray-200 focus:outline-none focus:border-emerald-600 transition" oninput="triggerModalSearch()">
+          <input type="text" id="modal-search-input" placeholder="Search by job title or keywords..." class="w-full text-xs sm:text-sm pl-10 pr-3 py-3 bg-gray-50 rounded-2xl border border-gray-200 focus:outline-none focus:border-emerald-600 transition" oninput="triggerModalSearch()">
         </div>
 
-        <!-- Filters Row: Qualification & Field -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <!-- Qualification Filter -->
           <select id="modal-qual-filter" class="text-xs sm:text-sm p-3 bg-gray-50 rounded-2xl border border-gray-200 focus:outline-none focus:border-emerald-600 font-medium text-gray-700 cursor-pointer" onchange="triggerModalSearch()">
             <option value="All">🎓 All Qualifications</option>
             <option value="Matric">Matric / Below</option>
@@ -94,7 +91,6 @@
             <option value="Master">Master Degree</option>
           </select>
 
-          <!-- Field / Department Filter -->
           <select id="modal-field-filter" class="text-xs sm:text-sm p-3 bg-gray-50 rounded-2xl border border-gray-200 focus:outline-none focus:border-emerald-600 font-medium text-gray-700 cursor-pointer" onchange="triggerModalSearch()">
             <option value="All">💼 All Fields / Sectors</option>
             <option value="IT">IT & Computer Science</option>
@@ -103,15 +99,6 @@
             <option value="Teaching">Education & Teaching</option>
             <option value="Medical">Medical & Healthcare</option>
           </select>
-        </div>
-
-        <!-- Trending Tags -->
-        <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1">
-          <span class="text-[10px] font-bold text-gray-400 uppercase whitespace-nowrap">Trending:</span>
-          <button onclick="applyModalSuggestion('PPSC')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-xl border border-emerald-200 whitespace-nowrap">🔥 PPSC</button>
-          <button onclick="applyModalSuggestion('Solar')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-xl border border-emerald-200 whitespace-nowrap">⚡ Solar</button>
-          <button onclick="applyModalSuggestion('IT')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-xl border border-emerald-200 whitespace-nowrap">💻 IT Jobs</button>
-          <button onclick="applyModalSuggestion('BISP')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-xl border border-emerald-200 whitespace-nowrap">💰 BISP</button>
         </div>
       </div>
 
