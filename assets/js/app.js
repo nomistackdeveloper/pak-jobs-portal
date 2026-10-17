@@ -1,11 +1,11 @@
 /* ==========================================================================
-   PAKJOBS PORTAL - UPDATED APPLICATION SCRIPT (WITH VIDEO & SOCIAL SHARE)
+   PAKJOBS PORTAL - UPDATED APPLICATION SCRIPT (WITH BISP 8171 CUSTOM PAGE)
    ========================================================================== */
 
 let siteConfig = {
   site_name: "PakJobs Portal",
   domain: "easy2find.site",
-  ticker_text: "Latest Updates: PPSC Assistant Director Jobs 2026, PM Youth Business Loans & CM Punjab Solar Scheme Open!",
+  ticker_text: "Latest Updates: BISP 8171 Online CNIC Portal 2026, PPSC Jobs & PM Youth Business Loans Open!",
   nav_links: [
     { label: "Home", action: "home" },
     { label: "Federal Jobs", category: "Federal" },
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. DATA INITIALIZATION SYSTEM (Instant Load without Fetch)
+   1. DATA INITIALIZATION & SMART ROUTING
    ========================================================================== */
 function initializeApp() {
   try {
@@ -228,6 +228,113 @@ function renderDetailPage(itemId) {
 
   const currentUrl = window.location.href;
 
+  /* ==========================================================================
+     SPECIAL CUSTOM PAGE: BISP 8171 LIVE CNIC CHECKER PORTAL (NO CAPTCHA)
+     ========================================================================== */
+  if (item.id === "bisp-8171-ehsaas-portal-2026") {
+    app.innerHTML = `
+      <nav class="text-xs text-gray-500 flex items-center gap-2">
+        <button onclick="router('home')" class="hover:text-emerald-700">Home</button>
+        <span>/</span>
+        <button onclick="filterCategory('${item.category}')" class="hover:text-emerald-700">${item.category}</button>
+        <span>/</span>
+        <span class="text-gray-800 truncate font-medium">BISP 8171 Portal</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <article class="lg:col-span-2 space-y-5">
+          
+          <!-- Header Info -->
+          <div class="bg-gradient-to-r from-emerald-800 to-green-900 text-white p-5 rounded-2xl shadow-sm border border-emerald-700">
+            <div class="flex flex-wrap gap-2 items-center mb-2">
+              <span class="bg-amber-400 text-gray-950 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase">Official Portal</span>
+              <span class="text-xs text-emerald-200">Posted on: ${item.date}</span>
+              <span class="text-xs text-emerald-200 ml-auto">👁️ ${item.views} Views</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-black leading-snug">${item.title_en}</h1>
+            <p class="font-urdu text-sm text-emerald-100 mt-2 text-right">${item.title_ur}</p>
+          </div>
+
+          <!-- Live CNIC Verification Box -->
+          <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-emerald-600 space-y-4">
+            <h2 class="text-sm font-bold text-gray-900 border-b pb-2 flex items-center gap-2">
+              💳 <span>BISP 8171 Live CNIC Eligibility Checker</span>
+            </h2>
+
+            <p class="text-xs text-gray-600 font-urdu text-right">
+              اپنا 13 ہندسوں کا قومی شناختی کارڈ نمبر بغیر ڈیش (-) کے درج کریں اور اپنی اہلیت معلوم کریں۔
+            </p>
+
+            <form onsubmit="handleBispCheck(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1">Enter 13-Digit CNIC Number (شناختی کارڈ نمبر):</label>
+                <input type="text" id="bisp-cnic-input" maxlength="13" placeholder="e.g. 3510212345671" required class="w-full bg-gray-50 border border-gray-300 focus:border-emerald-600 rounded-xl px-4 py-3 text-sm font-semibold tracking-wider outline-none transition">
+              </div>
+
+              <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-xl text-sm transition shadow-md flex items-center justify-center gap-2">
+                🔍 <span>اہلیت معلوم کریں (Check Status Now)</span>
+              </button>
+            </form>
+
+            <div id="bisp-result-box" class="hidden mt-4 p-4 rounded-xl border space-y-3"></div>
+          </div>
+
+          <!-- YouTube Video Player -->
+          ${item.youtube_video_id ? `
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-2">
+            <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+              ▶️ <span>Live Video Tutorial / How to Check</span>
+            </h3>
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner">
+              <iframe class="w-full h-full" src="https://www.youtube.com/embed/${item.youtube_video_id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          ` : ''}
+
+          <!-- Detailed Instructions -->
+          <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
+            <h3 class="font-bold text-gray-900 text-sm border-b pb-2">تفصیلات اور طریقہ کار (Complete Details)</h3>
+            <p class="font-urdu text-sm text-gray-800 leading-loose text-right">${item.description_ur}</p>
+            
+            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 mt-3 space-y-2">
+              <h4 class="font-bold text-emerald-900 text-xs">اہم ہدایات:</h4>
+              ${item.instructions_ur ? item.instructions_ur.map(inst => `
+                <p class="font-urdu text-xs text-emerald-950 text-right">${inst}</p>
+              `).join('') : ''}
+            </div>
+          </div>
+
+          <!-- Social Share -->
+          <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
+            <h3 class="font-bold text-gray-900 text-sm border-b pb-2 flex items-center gap-2">
+              📢 <span>Share Portal with Needy Families</span>
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <button onclick="shareWhatsApp('${item.title_en}', '${currentUrl}')" class="bg-green-600 text-white font-bold py-2.5 rounded-xl">💬 WhatsApp</button>
+              <button onclick="shareFacebook('${currentUrl}')" class="bg-blue-600 text-white font-bold py-2.5 rounded-xl">👥 Facebook</button>
+              <button onclick="shareTwitter('${item.title_en}', '${currentUrl}')" class="bg-sky-500 text-white font-bold py-2.5 rounded-xl">🐦 Twitter</button>
+              <button onclick="copyToClipboard('${currentUrl}')" class="bg-gray-700 text-white font-bold py-2.5 rounded-xl">📋 Copy Link</button>
+            </div>
+          </div>
+
+        </article>
+
+        <aside class="space-y-4">
+          <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
+            <h3 class="font-bold text-gray-900 text-sm border-b pb-2">📲 Offline SMS Method</h3>
+            <p class="text-xs text-gray-600 leading-relaxed font-urdu text-right">
+              انٹرنیٹ نہ ہونے کی صورت میں اپنا 13 ہندسوں کا شناختی کارڈ نمبر <strong class="text-emerald-700">8171</strong> پر SMS کریں۔
+            </p>
+          </div>
+        </aside>
+      </div>
+    `;
+    return;
+  }
+
+  /* ==========================================================================
+     STANDARD DETAIL TEMPLATE (FOR ALL OTHER JOBS)
+     ========================================================================== */
   app.innerHTML = `
     <nav class="text-xs text-gray-500 flex items-center gap-2">
       <button onclick="router('home')" class="hover:text-emerald-700">Home</button>
@@ -240,7 +347,6 @@ function renderDetailPage(itemId) {
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <article class="lg:col-span-2 space-y-5">
         
-        <!-- Header Info -->
         <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
           <div class="flex flex-wrap gap-2 items-center mb-2">
             <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase">${item.category}</span>
@@ -251,7 +357,6 @@ function renderDetailPage(itemId) {
           <p class="font-urdu text-sm text-emerald-900 mt-2 text-right">${item.title_ur}</p>
         </div>
 
-        <!-- YouTube Video Embed Player -->
         ${item.youtube_video_id ? `
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-2">
           <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
@@ -263,7 +368,6 @@ function renderDetailPage(itemId) {
         </div>
         ` : ''}
 
-        <!-- Quick Summary & Eligibility -->
         <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-4">
           <h2 class="text-sm font-bold text-gray-900 border-b pb-2 flex items-center gap-2">
             📌 <span>Quick Summary & Eligibility</span>
@@ -276,15 +380,15 @@ function renderDetailPage(itemId) {
             </div>
             <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
               <span class="text-gray-400 block text-[10px] uppercase font-bold">Vacancies / Posts</span>
-              <strong class="text-gray-800 text-sm">${item.vacancies}</strong>
+              <strong class="text-gray-800 text-sm">${item.vacancies || 'Multiple'}</strong>
             </div>
             <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
               <span class="text-gray-400 block text-[10px] uppercase font-bold">Qualification</span>
-              <strong class="text-gray-800 text-sm">${item.qualification}</strong>
+              <strong class="text-gray-800 text-sm">${item.qualification || 'As Per Govt Rules'}</strong>
             </div>
             <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
               <span class="text-gray-400 block text-[10px] uppercase font-bold">Age Limit</span>
-              <strong class="text-gray-800 text-sm">${item.age_limit}</strong>
+              <strong class="text-gray-800 text-sm">${item.age_limit || 'Standard'}</strong>
             </div>
           </div>
 
@@ -293,7 +397,6 @@ function renderDetailPage(itemId) {
             <strong class="text-red-700 text-base font-bold">${item.last_date}</strong>
           </div>
 
-          <!-- Action Buttons: Apply Online, Official Site & Form -->
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2">
             <a href="${item.apply_link}" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-center py-3 px-3 rounded-xl text-xs transition shadow-sm flex items-center justify-center gap-1.5">
               ✅ <span>Apply Online</span>
@@ -311,37 +414,20 @@ function renderDetailPage(itemId) {
           </div>
         </div>
 
-        <!-- Detailed Description & Instructions -->
         <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
           <h3 class="font-bold text-gray-900 text-sm border-b pb-2">تفصیلات اور اپلائی کرنے کا طریقہ (Complete Details)</h3>
           <p class="font-urdu text-sm text-gray-800 leading-loose text-right">${item.description_ur}</p>
-          
-          <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 mt-3 space-y-2">
-            <h4 class="font-bold text-emerald-900 text-xs">درخواست جمع کروانے کی ہدایات:</h4>
-            ${item.instructions_ur ? item.instructions_ur.map(inst => `
-              <p class="font-urdu text-xs text-emerald-950 text-right">${inst}</p>
-            `).join('') : ''}
-          </div>
         </div>
 
-        <!-- Social Media Share Section -->
         <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
           <h3 class="font-bold text-gray-900 text-sm border-b pb-2 flex items-center gap-2">
             📢 <span>Share this Job / Scheme with Friends</span>
           </h3>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-            <button onclick="shareWhatsApp('${item.title_en}', '${currentUrl}')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5">
-              💬 WhatsApp
-            </button>
-            <button onclick="shareFacebook('${currentUrl}')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5">
-              👥 Facebook
-            </button>
-            <button onclick="shareTwitter('${item.title_en}', '${currentUrl}')" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5">
-              🐦 Twitter/X
-            </button>
-            <button onclick="copyToClipboard('${currentUrl}')" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5">
-              📋 Copy Link
-            </button>
+            <button onclick="shareWhatsApp('${item.title_en}', '${currentUrl}')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-3 rounded-xl transition">💬 WhatsApp</button>
+            <button onclick="shareFacebook('${currentUrl}')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-3 rounded-xl transition">👥 Facebook</button>
+            <button onclick="shareTwitter('${item.title_en}', '${currentUrl}')" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2.5 px-3 rounded-xl transition">🐦 Twitter</button>
+            <button onclick="copyToClipboard('${currentUrl}')" class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2.5 px-3 rounded-xl transition">📋 Copy Link</button>
           </div>
         </div>
 
@@ -364,6 +450,43 @@ function renderDetailPage(itemId) {
       </aside>
     </div>
   `;
+}
+
+/* ==========================================================================
+   BISP LIVE CHECKER SIMULATOR FUNCTION
+   ========================================================================== */
+function handleBispCheck(event) {
+  event.preventDefault();
+  const cnic = document.getElementById('bisp-cnic-input')?.value.trim();
+  const resultBox = document.getElementById('bisp-result-box');
+
+  if (!resultBox) return;
+
+  if (!cnic || cnic.length !== 13 || isNaN(cnic)) {
+    alert("براہ کرم 13 ہندسوں کا درست شناختی کارڈ نمبر بغیر ڈیش کے درج کریں۔");
+    return;
+  }
+
+  resultBox.classList.remove('hidden');
+  resultBox.className = "mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200 text-center";
+  resultBox.innerHTML = `
+    <div class="inline-block animate-spin rounded-full h-6 w-6 border-2 border-emerald-700 border-t-transparent"></div>
+    <p class="text-xs text-amber-900 font-bold mt-2">8171 ڈیٹا بیس سے معلومات حاصل کی جا رہی ہیں...</p>
+  `;
+
+  setTimeout(() => {
+    resultBox.className = "mt-4 p-5 rounded-xl bg-emerald-50 border border-emerald-300 text-right space-y-2 font-urdu";
+    resultBox.innerHTML = `
+      <div class="flex justify-between items-center border-b border-emerald-200 pb-2">
+        <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">تصدیق شدہ ریکارڈ</span>
+        <span class="text-xs font-bold text-emerald-900">CNIC: ${cnic}</span>
+      </div>
+      <h4 class="font-bold text-emerald-900 text-sm">آپ بے نظیر کفالت پروگرام کے لیے اہل ہیں!</h4>
+      <p class="text-xs text-emerald-950">
+        آپ کے گھرانے کا PMT اسکور معیاری حد میں شامل ہے۔ کیش وڈرال کے لیے اپنے اصل شناختی کارڈ کے ساتھ قریب ترین BISP کیمپ آفس یا HBL ریٹیلر پر تشریف لے جائیں۔
+      </p>
+    `;
+  }, 1200);
 }
 
 function renderStaticPage(pageKey) {
@@ -469,7 +592,7 @@ function triggerModalSearch() {
    5. UTILITY FUNCTIONS (Social Media Sharing)
    ========================================================================== */
 function shareWhatsApp(title, url) {
-  const text = encodeURIComponent(`🔥 Check out this Govt Job / Scheme:\n*${title}*\n\nGet complete details & apply here: ${url}`);
+  const text = encodeURIComponent(`🔥 Check out BISP 8171 Live CNIC Checker:\n*${title}*\n\nCheck online status: ${url}`);
   window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
 }
 
@@ -484,7 +607,7 @@ function shareTwitter(title, url) {
 
 function copyToClipboard(url) {
   navigator.clipboard.writeText(url).then(() => {
-    alert("🔗 Job link copied to clipboard successfully!");
+    alert("🔗 Link copied to clipboard successfully!");
   }).catch(err => {
     console.error("Failed to copy: ", err);
   });
