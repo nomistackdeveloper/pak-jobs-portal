@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PAKJOBS PORTAL - UPDATED APPLICATION SCRIPT (WITH BISP 8171 CUSTOM PAGE)
+   PAKJOBS PORTAL - FINAL COMPLETE APPLICATION SCRIPT
    ========================================================================== */
 
 let siteConfig = {
@@ -133,14 +133,14 @@ function renderFooter() {
 }
 
 /* ==========================================================================
-   3. ROUTING & VIEWS
+   3. ROUTING & CATEGORY FILTERING (WITH ACTIVE TAB COLOR FIX)
    ========================================================================== */
 function router(view, param = null) {
   window.scrollTo(0, 0);
 
   if (view === "home") {
     history.pushState(null, "", "index.html");
-    renderHomePage(allPostsData);
+    renderHomePage(allPostsData, "All Recent Listings", "All");
   } else if (view === "detail") {
     history.pushState(null, "", `?id=${param}`);
     renderDetailPage(param);
@@ -149,13 +149,27 @@ function router(view, param = null) {
 
 function filterCategory(catName) {
   window.scrollTo(0, 0);
-  const filtered = allPostsData.filter(p => p.category.toLowerCase() === catName.toLowerCase() || (catName === 'jobs' && p.type === 'job'));
-  renderHomePage(filtered.length ? filtered : allPostsData, catName);
+  
+  let filtered = allPostsData;
+  let activeTitle = `All Recent Listings`;
+
+  if (catName !== 'All') {
+    filtered = allPostsData.filter(p => p.category.toLowerCase() === catName.toLowerCase() || (catName === 'jobs' && p.type === 'job'));
+    activeTitle = `${catName} Listings`;
+  }
+
+  renderHomePage(filtered, activeTitle, catName);
 }
 
-function renderHomePage(dataList, activeCategory = "All Recent Listings") {
+function renderHomePage(dataList, activeCategory = "All Recent Listings", activeTab = "All") {
   const app = document.getElementById("app-content");
   if (!app) return;
+
+  const getBtnClass = (tabName) => {
+    return activeTab === tabName 
+      ? "bg-emerald-700 text-white font-semibold text-xs py-2 px-4 rounded-xl whitespace-nowrap shadow-sm transition"
+      : "bg-white hover:bg-emerald-50 text-gray-700 font-semibold text-xs py-2 px-4 rounded-xl border border-gray-200 whitespace-nowrap shadow-sm transition";
+  };
 
   app.innerHTML = `
     <section class="bg-emerald-900 text-white rounded-2xl p-5 sm:p-8 shadow-md relative overflow-hidden">
@@ -171,16 +185,16 @@ function renderHomePage(dataList, activeCategory = "All Recent Listings") {
     </section>
 
     <div class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
-      <button onclick="router('home')" class="bg-emerald-700 text-white font-semibold text-xs py-2 px-4 rounded-xl whitespace-nowrap shadow-sm">
+      <button onclick="filterCategory('All')" class="${getBtnClass('All')}">
         All Listings
       </button>
-      <button onclick="filterCategory('Punjab')" class="bg-white hover:bg-emerald-50 text-gray-700 font-semibold text-xs py-2 px-4 rounded-xl border border-gray-200 whitespace-nowrap shadow-sm">
+      <button onclick="filterCategory('Punjab')" class="${getBtnClass('Punjab')}">
         Punjab Jobs
       </button>
-      <button onclick="filterCategory('Federal')" class="bg-white hover:bg-emerald-50 text-gray-700 font-semibold text-xs py-2 px-4 rounded-xl border border-gray-200 whitespace-nowrap shadow-sm">
+      <button onclick="filterCategory('Federal')" class="${getBtnClass('Federal')}">
         Federal Jobs
       </button>
-      <button onclick="filterCategory('Schemes')" class="bg-white hover:bg-emerald-50 text-gray-700 font-semibold text-xs py-2 px-4 rounded-xl border border-gray-200 whitespace-nowrap shadow-sm">
+      <button onclick="filterCategory('Schemes')" class="${getBtnClass('Schemes')}">
         Govt Schemes
       </button>
     </div>
@@ -221,6 +235,9 @@ function renderHomePage(dataList, activeCategory = "All Recent Listings") {
   `;
 }
 
+/* ==========================================================================
+   4. DETAIL PAGE RENDERER (BISP 8171 & STANDARD JOBS)
+   ========================================================================== */
 function renderDetailPage(itemId) {
   const item = allPostsData.find(p => p.id === itemId) || allPostsData[0];
   const app = document.getElementById("app-content");
@@ -228,9 +245,6 @@ function renderDetailPage(itemId) {
 
   const currentUrl = window.location.href;
 
-  /* ==========================================================================
-     SPECIAL CUSTOM PAGE: BISP 8171 LIVE CNIC CHECKER PORTAL (NO CAPTCHA)
-     ========================================================================== */
   if (item.id === "bisp-8171-ehsaas-portal-2026") {
     app.innerHTML = `
       <nav class="text-xs text-gray-500 flex items-center gap-2">
@@ -244,7 +258,6 @@ function renderDetailPage(itemId) {
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <article class="lg:col-span-2 space-y-5">
           
-          <!-- Header Info -->
           <div class="bg-gradient-to-r from-emerald-800 to-green-900 text-white p-5 rounded-2xl shadow-sm border border-emerald-700">
             <div class="flex flex-wrap gap-2 items-center mb-2">
               <span class="bg-amber-400 text-gray-950 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase">Official Portal</span>
@@ -255,7 +268,6 @@ function renderDetailPage(itemId) {
             <p class="font-urdu text-sm text-emerald-100 mt-2 text-right">${item.title_ur}</p>
           </div>
 
-          <!-- Live CNIC Verification Box -->
           <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-emerald-600 space-y-4">
             <h2 class="text-sm font-bold text-gray-900 border-b pb-2 flex items-center gap-2">
               💳 <span>BISP 8171 Live CNIC Eligibility Checker</span>
@@ -279,7 +291,6 @@ function renderDetailPage(itemId) {
             <div id="bisp-result-box" class="hidden mt-4 p-4 rounded-xl border space-y-3"></div>
           </div>
 
-          <!-- YouTube Video Player -->
           ${item.youtube_video_id ? `
           <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-2">
             <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
@@ -291,7 +302,6 @@ function renderDetailPage(itemId) {
           </div>
           ` : ''}
 
-          <!-- Detailed Instructions -->
           <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
             <h3 class="font-bold text-gray-900 text-sm border-b pb-2">تفصیلات اور طریقہ کار (Complete Details)</h3>
             <p class="font-urdu text-sm text-gray-800 leading-loose text-right">${item.description_ur}</p>
@@ -304,7 +314,6 @@ function renderDetailPage(itemId) {
             </div>
           </div>
 
-          <!-- Social Share -->
           <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 space-y-3">
             <h3 class="font-bold text-gray-900 text-sm border-b pb-2 flex items-center gap-2">
               📢 <span>Share Portal with Needy Families</span>
@@ -332,9 +341,6 @@ function renderDetailPage(itemId) {
     return;
   }
 
-  /* ==========================================================================
-     STANDARD DETAIL TEMPLATE (FOR ALL OTHER JOBS)
-     ========================================================================== */
   app.innerHTML = `
     <nav class="text-xs text-gray-500 flex items-center gap-2">
       <button onclick="router('home')" class="hover:text-emerald-700">Home</button>
@@ -453,7 +459,7 @@ function renderDetailPage(itemId) {
 }
 
 /* ==========================================================================
-   BISP LIVE CHECKER SIMULATOR FUNCTION
+   5. BISP LIVE CHECKER FUNCTION
    ========================================================================== */
 function handleBispCheck(event) {
   event.preventDefault();
@@ -508,7 +514,7 @@ function renderStaticPage(pageKey) {
 }
 
 /* ==========================================================================
-   4. ADVANCED SEARCH & FILTER MODAL SYSTEM
+   6. SEARCH & UTILITY FUNCTIONS
    ========================================================================== */
 function openSearchModal() {
   const modal = document.getElementById("search-modal");
@@ -523,14 +529,6 @@ function closeSearchModal() {
   const modal = document.getElementById("search-modal");
   if (modal) {
     modal.classList.add("hidden");
-  }
-}
-
-function applyModalSuggestion(keyword) {
-  const input = document.getElementById("modal-search-input");
-  if (input) {
-    input.value = keyword;
-    triggerModalSearch();
   }
 }
 
@@ -588,9 +586,6 @@ function triggerModalSearch() {
   `).join('');
 }
 
-/* ==========================================================================
-   5. UTILITY FUNCTIONS (Social Media Sharing)
-   ========================================================================== */
 function shareWhatsApp(title, url) {
   const text = encodeURIComponent(`🔥 Check out BISP 8171 Live CNIC Checker:\n*${title}*\n\nCheck online status: ${url}`);
   window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
