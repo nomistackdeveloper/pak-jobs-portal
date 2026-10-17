@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PAKJOBS PORTAL - FINAL COMPLETE APPLICATION SCRIPT (WITH FOOTER LINKS FIX)
+   PAKJOBS PORTAL - FINAL COMPLETE APPLICATION SCRIPT (URL FIX FOR detail.html)
    ========================================================================== */
 
 let siteConfig = {
@@ -137,7 +137,7 @@ function renderFooter() {
 }
 
 /* ==========================================================================
-   3. ROUTING & CATEGORY FILTERING (WITH ACTIVE TAB COLOR FIX)
+   3. ROUTING & CATEGORY FILTERING (WITH detail.html URL FIX)
    ========================================================================== */
 function router(view, param = null) {
   window.scrollTo(0, 0);
@@ -146,7 +146,8 @@ function router(view, param = null) {
     history.pushState(null, "", "index.html");
     renderHomePage(allPostsData, "All Recent Listings", "All");
   } else if (view === "detail") {
-    history.pushState(null, "", `?id=${param}`);
+    // Ye line ab URL me detail.html?id=... set karegi
+    history.pushState(null, "", `detail.html?id=${param}`);
     renderDetailPage(param);
   }
 }
