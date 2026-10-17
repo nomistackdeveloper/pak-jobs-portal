@@ -1,5 +1,29 @@
 const pakJobsData = [
   {
+    "id": "bisp-8171-ehsaas-portal-2026",
+    "type": "scheme",
+    "category": "Schemes",
+    "department": "Benazir Income Support Programme (BISP)",
+    "title_en": "BISP 8171 Online Registration & CNIC Payment Check Portal 2026",
+    "title_ur": "بے نظیر 8171 پروگرام آن لائن شناختی کارڈ چیک و رجسٹریشن پورٹل 2026",
+    "vacancies": "Nationwide Beneficiaries",
+    "qualification": "CNIC Holder / PMT Score Verified",
+    "age_limit": "18 - 60 Years",
+    "last_date": "December 31, 2026",
+    "apply_link": "https://8171.bisp.gov.pk",
+    "official_site_link": "https://bisp.gov.pk",
+    "application_form_link": "https://8171.bisp.gov.pk",
+    "youtube_video_id": "BToxJexpVas",
+    "views": "18,400",
+    "date": "October 16, 2026",
+    "description_ur": "حکومتِ پاکستان کے بے نظیر انکم سپورٹ پروگرام (BISP) کے تحت مستحق خواتین اور خاندانوں کے لیے 8171 ویب پورٹل اور لائیو شناختی کارڈ چیکنگ کی سہولت جاری کر دی گئی ہے۔",
+    "instructions_ur": [
+      "1. اپنا 13 ہندسوں کا شناختی کارڈ نمبر پورٹل میں درج کریں۔",
+      "2. 'معلوم کریں' کے بٹن پر کلک کر کے اپنی اہلیت چیک کریں۔",
+      "3. نااہل یا بلاک ہونے کی صورت میں قریبی BISP تحصیل آفس سے رابطہ کریں۔"
+    ]
+  },
+  {
     "id": "edb-it-specialist-njp-2026",
     "type": "job",
     "category": "Federal",
@@ -40,7 +64,7 @@ const pakJobsData = [
     "youtube_video_id": "dQw4w9WgXcQ",
     "views": "740",
     "date": "Oct 10, 2026",
-    "description_ur": "پاکستان نیشنل شپنگ کارپوریشن (PNSC) کراچی نے کمرشل اور بلیٹ چارٹرنگ پورٹ فولیو کے لیے مینیجر بلک کیریئر کی اسامی پر این جے پی پورٹل کے ذریعے درخواستیں طلب کی ہیں۔",
+    "description_ur": "پاکستان نیشنل شپنگ کارپوریشن (PNSC) کراچی نے کمرشل اور بلیٹ چارٹرنگ پورٹ فولیو کے لیے مینیجر بلک کیریئر کی اسامی پر این جے پی پورٹل کے ذریعے درخواستیں طلب کی ہیں[cite: 7].",
     "instructions_ur": [
       "1. NJP پورٹل پر لاگ ان کر کے PNSC کی خالی اسامیوں کی فہرست کھولیں۔",
       "2. تعلیمی ڈگری اور میرین/سیلنگ تجربہ سرٹیفکیٹ پروفائل میں شامل کریں۔",
@@ -406,26 +430,6 @@ const pakJobsData = [
     "date": "Oct 11, 2026",
     "description_ur": "طلباء و طالبات کے لیے آسان ماہانہ اقساط پر بغیر سود کے موٹر سائیکل فراہم کرنے کی اسکیم۔",
     "instructions_ur": ["1. آن لائن پورٹل پر جا کر فارم پُر کریں۔"]
-  },
-  {
-    "id": "bisp-kafaalat-program-2026",
-    "type": "scheme",
-    "category": "Schemes",
-    "department": "Benazir Income Support Programme (BISP)",
-    "title_en": "BISP Kafaalat 10,500 Quarterly Installment 2026",
-    "title_ur": "بینظیر انکم سپورٹ پروگرام کفالت قسط 2026",
-    "vacancies": "Nationwide Beneficiaries",
-    "qualification": "CNIC Holder / PMT Score Verified",
-    "age_limit": "18 - 60 Years",
-    "last_date": "Open Ongoing",
-    "apply_link": "https://8171.bisp.gov.pk",
-    "official_site_link": "https://bisp.gov.pk",
-    "application_form_link": "https://8171.bisp.gov.pk",
-    "youtube_video_id": "dQw4w9WgXcQ",
-    "views": "8,920",
-    "date": "Oct 05, 2026",
-    "description_ur": "مستحق خاندانوں کے لیے نئی سہ ماہی قسط 10,500 روپے جاری کر دی گئی ہے۔",
-    "instructions_ur": ["1. اپنا شناختی کارڈ نمبر 8171 پر ایس ایم ایس کریں۔"]
   },
   {
     "id": "pakistan-railways-jobs-2026",
