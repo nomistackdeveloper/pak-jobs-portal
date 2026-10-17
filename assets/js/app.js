@@ -1,9 +1,10 @@
 /* ==========================================================================
-   PAKJOBS PORTAL - FINAL COMPLETE APPLICATION SCRIPT (URL FIX FOR detail.html)
+   PAKJOBS PORTAL - FINAL APPLICATION SCRIPT (WITH LOGO & AD IMAGE INTEGRATION)
    ========================================================================== */
 
 let siteConfig = {
   site_name: "PakJobs Portal",
+  logo_url: "assets/images/logo.webp",
   domain: "easy2find.site",
   ticker_text: "Latest Updates: BISP 8171 Online CNIC Portal 2026, PPSC Jobs & PM Youth Business Loans Open!",
   nav_links: [
@@ -58,7 +59,7 @@ function initializeApp() {
 }
 
 /* ==========================================================================
-   2. HEADER & FOOTER RENDERERS
+   2. HEADER & FOOTER RENDERERS (WITH WEB LOGO IMAGE)
    ========================================================================== */
 function renderHeader() {
   const headerEl = document.getElementById("main-header");
@@ -70,8 +71,9 @@ function renderHeader() {
     </div>
 
     <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="index.html" onclick="event.preventDefault(); router('home')" class="flex items-center gap-2 text-xl font-black tracking-tight text-white">
-        <span class="bg-emerald-500 text-emerald-950 px-2 py-0.5 rounded text-sm font-extrabold">PK</span>
+      <a href="index.html" onclick="event.preventDefault(); router('home')" class="flex items-center gap-2.5 text-xl font-black tracking-tight text-white group">
+        <img src="${siteConfig.logo_url}" alt="Logo" class="h-9 w-auto object-contain rounded-md shadow-sm group-hover:scale-105 transition-transform" onerror="this.style.display='none'; document.getElementById('fallback-badge').style.display='inline-block'">
+        <span id="fallback-badge" class="hidden bg-emerald-500 text-emerald-950 px-2 py-0.5 rounded text-sm font-extrabold">PK</span>
         <span>${siteConfig.site_name}</span>
       </a>
 
@@ -99,7 +101,7 @@ function renderFooter() {
     <div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
       <div>
         <h3 class="text-white font-bold text-lg mb-3 flex items-center gap-2">
-          <span class="bg-emerald-600 text-white px-2 py-0.5 rounded text-xs">PK</span>
+          <img src="${siteConfig.logo_url}" alt="Logo" class="h-7 w-auto object-contain rounded" onerror="this.style.display='none'">
           ${siteConfig.site_name}
         </h3>
         <p class="text-gray-400 text-xs leading-relaxed">
@@ -146,7 +148,6 @@ function router(view, param = null) {
     history.pushState(null, "", "index.html");
     renderHomePage(allPostsData, "All Recent Listings", "All");
   } else if (view === "detail") {
-    // Ye line ab URL me detail.html?id=... set karegi
     history.pushState(null, "", `detail.html?id=${param}`);
     renderDetailPage(param);
   }
@@ -241,7 +242,7 @@ function renderHomePage(dataList, activeCategory = "All Recent Listings", active
 }
 
 /* ==========================================================================
-   4. DETAIL PAGE RENDERER (BISP 8171 & STANDARD JOBS)
+   4. DETAIL PAGE RENDERER (WITH PPSC ADVERTISEMENT IMAGE DISPLAY)
    ========================================================================== */
 function renderDetailPage(itemId) {
   const item = allPostsData.find(p => p.id === itemId) || allPostsData[0];
@@ -346,6 +347,10 @@ function renderDetailPage(itemId) {
     return;
   }
 
+  // PPSC Specific Image Display check
+  const isPpscPost = item.id === "ppsc-assistant-director-2026";
+  const adImagePath = "assets/images/ads/ppsc-ad-2026.webp";
+
   app.innerHTML = `
     <nav class="text-xs text-gray-500 flex items-center gap-2">
       <button onclick="router('home')" class="hover:text-emerald-700">Home</button>
@@ -367,6 +372,19 @@ function renderDetailPage(itemId) {
           <h1 class="text-xl sm:text-2xl font-black text-gray-900 leading-snug">${item.title_en}</h1>
           <p class="font-urdu text-sm text-emerald-900 mt-2 text-right">${item.title_ur}</p>
         </div>
+
+        <!-- Official Newspaper Advertisement Image Section -->
+        ${isPpscPost ? `
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
+          <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2 border-b pb-2">
+            📰 <span>Official Newspaper Advertisement (سرکاری اشتہار)</span>
+          </h3>
+          <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm bg-gray-50 flex justify-center">
+            <img src="${adImagePath}" alt="PPSC Official Advertisement" class="w-full h-auto max-h-[600px] object-contain hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="window.open('${adImagePath}', '_blank')">
+          </div>
+          <p class="text-[11px] text-gray-400 text-center">Click image to view full screen</p>
+        </div>
+        ` : ''}
 
         ${item.youtube_video_id ? `
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-2">
