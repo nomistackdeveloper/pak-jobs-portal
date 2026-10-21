@@ -39,7 +39,8 @@ const pakJobsData = [
     "official_site_link": "https://www.engineeringpakistan.com",
     "application_form_link": "https://njp.gov.pk/jobs/live",
     "youtube_video_id": "dQw4w9WgXcQ",
-    "views": "1000",
+    "thumbnail": "https://drive.google.com/file/d/1v75W6k8V5wmzgsmfLOixB3NY1pg30E2K/view?usp=sharing",
+    "views": "2000",
     "date": "Oct 12, 2026",
     "description_ur": "انجینئرنگ ڈویلپمنٹ بورڈ اسلام آباد نے ایم آئی ایس اور ڈیٹا بیس ہینڈلنگ کے لیے آئی ٹی اسپیشلسٹ کی خالی اسامی پر نیشنل جاب پورٹل کے ذریعے درخواستیں طلب کی ہیں۔",
     "instructions_ur": [
