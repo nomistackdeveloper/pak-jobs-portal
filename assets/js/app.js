@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PAKJOBS PORTAL - FINAL APPLICATION SCRIPT (HOME THUMBNAILS, NO DETAIL IMAGES)
+   PAKJOBS PORTAL - FINAL APPLICATION SCRIPT (HOME CARD BANNER IMAGE INTEGRATED)
    ========================================================================== */
 
 let siteConfig = {
@@ -216,13 +216,21 @@ function renderHomePage(dataList, activeCategory = "All Recent Listings", active
           <div onclick="router('detail', '${item.id}')" class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-500 transition cursor-pointer flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center gap-2 mb-3">
-                <div class="flex items-center gap-2">
-                  ${item.thumbnail ? `<img src="${item.thumbnail}" referrerpolicy="no-referrer" alt="Thumb" class="w-8 h-8 rounded-lg object-cover border border-gray-100 shadow-xs" onerror="this.style.display='none'">` : ''}
-                  <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">${item.category}</span>
-                </div>
+                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">${item.category}</span>
                 <span class="text-[11px] text-gray-400">📅 ${item.date}</span>
               </div>
-              <h3 class="font-bold text-gray-900 text-sm sm:text-base line-clamp-2 hover:text-emerald-700">${item.title_en}</h3>
+              
+              <!-- English Title -->
+              <h3 class="font-bold text-gray-900 text-sm sm:text-base hover:text-emerald-700 leading-snug">${item.title_en}</h3>
+
+              <!-- 📸 EXACT BANNER IMAGE PLACEMENT BELOW TITLE -->
+              ${item.thumbnail ? `
+              <div class="my-3 overflow-hidden rounded-xl border border-gray-100 shadow-sm bg-gray-50">
+                <img src="${item.thumbnail}" referrerpolicy="no-referrer" alt="Post Banner" class="w-full h-auto max-h-48 object-cover rounded-xl" onerror="this.parentElement.style.display='none'">
+              </div>
+              ` : ''}
+
+              <!-- Urdu Title -->
               <p class="font-urdu text-xs text-emerald-800 mt-1 text-right line-clamp-1">${item.title_ur}</p>
               
               <div class="mt-3 bg-gray-50 p-2.5 rounded-xl space-y-1 text-xs">
