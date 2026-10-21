@@ -14,8 +14,8 @@ const pakJobsData = [
     "official_site_link": "https://bisp.gov.pk",
     "application_form_link": "https://8171.bisp.gov.pk",
     "youtube_video_id": "BToxJexpVas",
-    "thumbnail": "https://lh3.googleusercontent.com/d/18VOeddRHKYV3VVg5V5Q_0-lxR1meAOjO",
-    "views": "18,000",
+    "thumbnail": "https://drive.google.com/file/d/18VOeddRHKYV3VVg5V5Q_0-lxR1meAOjO/view",
+    "views": "20,000",
     "date": "October 16, 2026",
     "description_ur": "حکومتِ پاکستان کے بے نظیر انکم سپورٹ پروگرام (BISP) کے تحت مستحق خواتین اور خاندانوں کے لیے 8171 ویب پورٹل اور لائیو شناختی کارڈ چیکنگ کی سہولت جاری کر دی گئی ہے۔",
     "instructions_ur": [
