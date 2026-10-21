@@ -3,9 +3,9 @@
    ========================================================================== */
 
 let siteConfig = {
-  site_name: "PakJobs Portal",
+  site_name: "GovGigz",
   logo_url: "assets/images/logo.webp",
-  domain: "easy2find.site",
+  domain: "govgigz.com",
   ticker_text: "Latest Updates: BISP 8171 Online CNIC Portal 2026, PPSC Jobs & PM Youth Business Loans Open!",
   nav_links: [
     { label: "Home", action: "home" },
