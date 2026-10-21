@@ -1,5 +1,5 @@
 const pakJobsData = [
-{
+  {
     "id": "bisp-8171-ehsaas-portal-2026",
     "type": "scheme",
     "category": "Schemes",
@@ -14,7 +14,7 @@ const pakJobsData = [
     "official_site_link": "https://bisp.gov.pk",
     "application_form_link": "https://8171.bisp.gov.pk",
     "youtube_video_id": "BToxJexpVas",
-    "thumbnail": "https://drive.google.com/file/d/18VOeddRHKYV3VVg5V5Q_0-lxR1meAOjO/view",
+    "thumbnail": "https://lh3.googleusercontent.com/d/18VOeddRHKYV3VVg5V5Q_0-lxR1meAOjO",
     "views": "20,000",
     "date": "October 16, 2026",
     "description_ur": "حکومتِ پاکستان کے بے نظیر انکم سپورٹ پروگرام (BISP) کے تحت مستحق خواتین اور خاندانوں کے لیے 8171 ویب پورٹل اور لائیو شناختی کارڈ چیکنگ کی سہولت جاری کر دی گئی ہے۔",
@@ -65,7 +65,7 @@ const pakJobsData = [
     "youtube_video_id": "dQw4w9WgXcQ",
     "views": "740",
     "date": "Oct 10, 2026",
-    "description_ur": "پاکستان نیشنل شپنگ کارپوریشن (PNSC) کراچی نے کمرشل اور بلیٹ چارٹرنگ پورٹ فولیو کے لیے مینیجر بلک کیریئر کی اسامی پر این جے پی پورٹل کے ذریعے درخواستیں طلب کی ہیں[cite: 7].",
+    "description_ur": "پاکستان نیشنل شپنگ کارپوریشن (PNSC) کراچی نے کمرشل اور بلیٹ چارٹرنگ پورٹ فولیو کے لیے مینیجر بلک کیریئر کی اسامی پر این جے پی پورٹل کے ذریعے درخواستیں طلب کی ہیں.",
     "instructions_ur": [
       "1. NJP پورٹل پر لاگ ان کر کے PNSC کی خالی اسامیوں کی فہرست کھولیں۔",
       "2. تعلیمی ڈگری اور میرین/سیلنگ تجربہ سرٹیفکیٹ پروفائل میں شامل کریں۔",
@@ -209,7 +209,7 @@ const pakJobsData = [
     "youtube_video_id": "dQw4w9WgXcQ",
     "views": "1,050",
     "date": "Oct 15, 2026",
-    "description_ur": "چائلڈ پروٹیکشن اینڈ ویلفیئر بیورو پنجاب نے این ٹی ایس کے ذریعے چائلڈ اٹینڈنٹ، ڈسپنسر، نرس، اور دیگر ایڈمن اسامیوں پر معاہدے کی بنیاد پر بھرتی کے لیے درخواستیں طلب کی ہیں۔",
+    "description_ur": "چائلڈ پروٹیکشن اینڈ ویلفیئر بیورو پنجاب نے NTS کے ذریعے چائلڈ اٹینڈنٹ، ڈسپنسر، نرس، اور دیگر ایڈمن اسامیوں پر معاہدے کی بنیاد پر بھرتی کے لیے درخواستیں طلب کی ہیں۔",
     "instructions_ur": [
       "1. نیشنل ٹیسٹنگ سروس (NTS) کی آفیشل ویب سائٹ پر پورٹل پر لاگ ان کریں۔",
       "2. نا قابلِ واپسی ٹیسٹ چالان فی کسی بھی ون لنک بینک/ایپ سے ادا کریں۔",
