@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PAKJOBS PORTAL - FINAL APPLICATION SCRIPT (WITH LOGO & AD IMAGE INTEGRATION)
+   PAKJOBS PORTAL - FINAL APPLICATION SCRIPT (HOME THUMBNAILS, NO DETAIL IMAGES)
    ========================================================================== */
 
 let siteConfig = {
@@ -215,8 +215,11 @@ function renderHomePage(dataList, activeCategory = "All Recent Listings", active
         ${dataList.map(item => `
           <div onclick="router('detail', '${item.id}')" class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 hover:border-emerald-500 transition cursor-pointer flex flex-col justify-between">
             <div>
-              <div class="flex justify-between items-start gap-2 mb-2">
-                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">${item.category}</span>
+              <div class="flex justify-between items-center gap-2 mb-3">
+                <div class="flex items-center gap-2">
+                  ${item.thumbnail ? `<img src="${item.thumbnail}" referrerpolicy="no-referrer" alt="Thumb" class="w-8 h-8 rounded-lg object-cover border border-gray-100 shadow-xs" onerror="this.style.display='none'">` : ''}
+                  <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">${item.category}</span>
+                </div>
                 <span class="text-[11px] text-gray-400">📅 ${item.date}</span>
               </div>
               <h3 class="font-bold text-gray-900 text-sm sm:text-base line-clamp-2 hover:text-emerald-700">${item.title_en}</h3>
@@ -242,7 +245,7 @@ function renderHomePage(dataList, activeCategory = "All Recent Listings", active
 }
 
 /* ==========================================================================
-   4. DETAIL PAGE RENDERER (WITH PPSC ADVERTISEMENT IMAGE DISPLAY)
+   4. DETAIL PAGE RENDERER (NO IMAGES DISPLAYED HERE)
    ========================================================================== */
 function renderDetailPage(itemId) {
   const item = allPostsData.find(p => p.id === itemId) || allPostsData[0];
@@ -347,10 +350,6 @@ function renderDetailPage(itemId) {
     return;
   }
 
-  // PPSC Specific Image Display check
-  const isPpscPost = item.id === "ppsc-assistant-director-2026";
-  const adImagePath = "assets/images/ads/ppsc-ad-2026.webp";
-
   app.innerHTML = `
     <nav class="text-xs text-gray-500 flex items-center gap-2">
       <button onclick="router('home')" class="hover:text-emerald-700">Home</button>
@@ -372,19 +371,6 @@ function renderDetailPage(itemId) {
           <h1 class="text-xl sm:text-2xl font-black text-gray-900 leading-snug">${item.title_en}</h1>
           <p class="font-urdu text-sm text-emerald-900 mt-2 text-right">${item.title_ur}</p>
         </div>
-
-        <!-- Official Newspaper Advertisement Image Section -->
-        ${isPpscPost ? `
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-3">
-          <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2 border-b pb-2">
-            📰 <span>Official Newspaper Advertisement (سرکاری اشتہار)</span>
-          </h3>
-          <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm bg-gray-50 flex justify-center">
-            <img src="${adImagePath}" alt="PPSC Official Advertisement" class="w-full h-auto max-h-[600px] object-contain hover:scale-105 transition-transform duration-300 cursor-pointer" onclick="window.open('${adImagePath}', '_blank')">
-          </div>
-          <p class="text-[11px] text-gray-400 text-center">Click image to view full screen</p>
-        </div>
-        ` : ''}
 
         ${item.youtube_video_id ? `
         <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 space-y-2">
