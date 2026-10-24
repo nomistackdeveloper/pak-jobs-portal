@@ -40,7 +40,7 @@ const pakJobsData = [
   "application_form_link": "https://duet.edu.pk",
   "youtube_video_id": "KavvWRYeIkI",
   "thumbnail": "https://lh3.googleusercontent.com/d/1SkYgcRCeEcvBDlIn2TE8sDq9R2LF9GOx",
-  "views": "1000",
+  "views": "2000",
   "date": "Oct 24, 2026",
   "description_ur": "محکمہ اعلیٰ تعلیم (حکومتِ سندھ) کے تحت کراچی میٹروپولیٹن یونیورسٹی میں وائس چانسلر، داؤد یونیورسٹی آف انجینئرنگ اینڈ ٹیکنالوجی میں ڈائریکٹر فائنانس اور SMBBMU لاڑکانہ میں پروفیسروں کی اسامیوں پر درخواستیں طلب کی گئی ہیں۔",
   "instructions_ur": [
