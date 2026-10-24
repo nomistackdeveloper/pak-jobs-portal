@@ -63,7 +63,7 @@ const pakJobsData = [
     "apply_link": "https://njp.gov.pk",
     "official_site_link": "https://pnsc.com.pk",
     "application_form_link": "https://njp.gov.pk/jobs/live",
-    "youtube_video_id": "dQw4w9WgXcQ",
+    "youtube_video_id": "RW2zxo9oTIQ?si=Kpqhn_fRi2Gg_bM_",
     "thumbnail": "https://lh3.googleusercontent.com/d/18VOeddRHKYV3VVg5V5Q_0-lxR1meAOjO",
     "views": "740",
     "date": "Oct 10, 2026",
