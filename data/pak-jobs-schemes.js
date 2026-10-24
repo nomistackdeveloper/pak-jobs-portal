@@ -63,9 +63,9 @@ const pakJobsData = [
     "apply_link": "https://njp.gov.pk",
     "official_site_link": "https://pnsc.com.pk",
     "application_form_link": "https://njp.gov.pk/jobs/live",
-    "youtube_video_id": "BY_kV-9-k40",
+    "youtube_video_id": "diaZuEkWleU",
     "thumbnail": "https://lh3.googleusercontent.com/d/1YjjraeCOIkt49zpPUwamb4c1qWo568Tt",
-    "views": "740",
+    "views": "1000",
     "date": "Oct 10, 2026",
     "description_ur": "پاکستان نیشنل شپنگ کارپوریشن (PNSC) کراچی نے کمرشل اور بلیٹ چارٹرنگ پورٹ فولیو کے لیے مینیجر بلک کیریئر کی اسامی پر این جے پی پورٹل کے ذریعے درخواستیں طلب کی ہیں.",
     "instructions_ur": [
