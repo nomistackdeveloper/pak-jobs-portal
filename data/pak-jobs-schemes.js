@@ -42,55 +42,7 @@ const pakJobsData = [
   "thumbnail": "https://lh3.googleusercontent.com/d/1SkYgcRCeEcvBDlIn2TE8sDq9R2LF9GOx",
   "views": "1000",
   "date": "Oct 24, 2026",
-  "description_ur":" Here is the simplified job summary presented in both **English** and **Urdu** so that every visitor on **GovGigz** can easily understand it.
-
----
-
-🌟 Quick Summary
-
-Public sector universities in Sindh have announced new job openings for teachers, researchers, and office staff. If you have a valid Sindh domicile and meet the education requirements, this is a great opportunity to work in a government university.
-
-📌 Main Job Categories
-
-1. **Teaching Jobs:** Professors, Associate Professors, Assistant Professors, and Lecturers in various subjects (like Computer Science, Math, Arts, and Sciences).
-2. **Office & Management Jobs:** Administrative officers, accountants, clerks, and IT assistants.
-
-📝 Basic Requirements
-
-* **Education:** Degree from an HEC-recognized university (Master's, BS, or Ph.D. depending on the post).
-* **Domicile:** Must have a valid **Sindh Domicile** and PRC.
-* **Experience:** Required only for senior academic and administrative posts; fresh graduates can apply for entry-level positions like Lecturers or Junior Assistants.
-
-🛠️ How to Apply
-
-1. Check the official advertisement of the specific university.
-2. Fill out the application form online or download it.
-3. Attach your educational documents, CNIC, Domicile, and photos.
-4. Pay the required application fee via bank challan before the last date.
-
----
-  
-🌟 مختصر خلاصہ (Quick Summary)
-
-سندھ کی سرکاری یونیورسٹیوں میں اساتذہ، محققین اور دفتری عملے کے لیے نئی ملازمتوں کا اعلان کیا گیا ہے۔ اگر آپ کے پاس سندھ کا ڈومیسائل ہے اور آپ مطلوبہ تعلیمی قابلیت رکھتے ہیں، تو سرکاری یونیورسٹی میں نوکری حاصل کرنے کا یہ بہترین موقع ہے۔
-
-📌 اہم ملازمت کی کیٹگریز
-
-1. **تدریسی نوکریوں (Teaching Jobs):** پروفیسر، ایسوسی ایٹ پروفیسر، اسسٹنٹ پروفیسر، اور لیکچرر (مختلف مضامین جیسے کمپیوٹر سائنس، ریاضی، سائنس اور آرٹس میں)۔
-2. **دفتری اور انتظامی نوکریوں (Office Jobs):** انتظامی افسران، اکاؤنٹنٹ، کلرک، اور آئی ٹی اسسٹنٹ۔
-
-📝 بنیادی شرائط (Requirements)
-
-تعلیمی قابلیت: ایچ ای سی (HEC) سے منظور شدہ یونیورسٹی سے ڈگری (پوسٹ کے حساب سے ماسٹرز، بی ایس یا پی ایچ ڈی)۔
-ڈومیسائل: امیدوار کے پاس (سندھ کا ڈومیسائل) اور پی آر سی ہونا لازمی ہے۔
-تجربہ: سینئر پوسٹس کے لیے تجربہ درکار ہے، جبکہ لیکچرر یا جونیئر پوسٹس کے لیے فریش گریجویٹس بھی اپلائی کر سکتے ہیں۔
-
-🛠️ اپلائی کرنے کا طریقہ
-
-1. متعلقہ یونیورسٹی کا آفیشل اشتہار چیک کریں۔
-2. آن لائن فارم پر کریں یا ڈاؤن لوڈ کریں۔
-3. اپنے تعلیمی اسناد، شناختی کارڈ، ڈومیسائل اور تصاویر ساتھ لگائیں۔
-4. آخری تاریخ سے پہلے بینک چالان جمع کروا کر فارم ارسال کریں۔",
+  "description_ur": "محکمہ اعلیٰ تعلیم (حکومتِ سندھ) کے تحت کراچی میٹروپولیٹن یونیورسٹی میں وائس چانسلر، داؤد یونیورسٹی آف انجینئرنگ اینڈ ٹیکنالوجی میں ڈائریکٹر فائنانس اور SMBBMU لاڑکانہ میں پروفیسروں کی اسامیوں پر درخواستیں طلب کی گئی ہیں۔",
   "instructions_ur": [
     "1. متعلقہ یونیورسٹی (DUET / KMU / SMBBMU) کی آفیشل ویب سائٹ سے پرسکرا ئبڈ درخواست فارم ڈاؤن لوڈ کریں۔",
     "2. تعلیمی اسناد، پی ایچ ڈی / ایم فل کی ڈگریاں، تجربہ سرٹیفکیٹس اور پبلیکیشنز کی تصدیق شدہ کاپیاں لف کریں۔",
